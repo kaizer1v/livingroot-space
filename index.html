@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living Root - Coming Soon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            earth: {
+              50: '#FAF7F2',
+              100: '#F5F1E8',
+              200: '#E8E0D0',
+              300: '#D6CBB5',
+              800: '#4A3B32',
+              900: '#2C1810',
+            },
+            terracotta: {
+              DEFAULT: '#B85C38',
+              light: '#DDA15E',
+              dark: '#8B4513',
+            },
+            sage: {
+              DEFAULT: '#606C38',
+              light: '#8A9A5B',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D6CBB5;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B85C38;
+    }
+    
+    .noise-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-earth-50 text-earth-900 font-sans antialiased overflow-x-hidden relative min-h-screen">
+
+  <div class="fixed inset-0 z-0">
+    <img src="http://static.photos/nature/1200x630/42" alt="Nature background" class="w-full h-full object-cover opacity-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-earth-50/90 via-earth-100/80 to-earth-50/95"></div>
+  </div>
+  
+  <div class="noise-bg"></div>
+
+  <div class="fixed top-20 left-10 w-64 h-64 bg-sage/10 rounded-full blur-3xl animate-float z-0 pointer-events-none"></div>
+  <div class="fixed bottom-20 right-10 w-80 h-80 bg-terracotta/10 rounded-full blur-3xl animate-float-delayed z-0 pointer-events-none"></div>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-terracotta-light/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
+
+  <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-12">
+    
+    <div class="reveal active mb-8">
+      <div class="w-16 h-16 mx-auto bg-terracotta/10 rounded-full flex items-center justify-center mb-6">
+        <i data-lucide="sprout" class="w-8 h-8 text-terracotta"></i>
+      </div>
+    </div>
+
+    <div class="reveal active text-center mb-4">
+      <h1 class="font-serif text-6xl md:text-8xl font-bold tracking-tight text-earth-900 mb-2">
+        Living Root
+      </h1>
+      <div class="flex items-center justify-center gap-3 mt-4">
+        <div class="h-px w-12 bg-terracotta/40"></div>
+        <i data-lucide="map-pin" class="w-4 h-4 text-terracotta"></i>
+        <span class="text-earth-800 font-medium tracking-widest uppercase text-sm">India</span>
+        <div class="h-px w-12 bg-terracotta/40"></div>
+      </div>
+    </div>
+
+    <div class="reveal active text-center max-w-2xl mx-auto mb-10">
+      <p class="font-serif text-xl md:text-2xl text-earth-800 italic leading-relaxed">
+        "A community space rooted in connection, growing with every shared experience."
+      </p>
+    </div>
+
+    <div class="reveal active mb-12">
+      <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-sm border border-earth-200 rounded-full shadow-sm">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sage opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-sage"></span>
+        </span>
+        <span class="text-earth-900 font-medium tracking-wide uppercase text-sm md:text-base">Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="reveal active grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full mb-12">
+      <div class="group p-6 bg-white/40 backdrop-blur-sm border border-earth-200 rounded-2xl hover:bg-white/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="w-10 h-10 bg-terracotta/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-terracotta/20 transition-colors">
+          <i data-lucide="users" class="w-5 h-5 text-terracotta"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-earth-900 mb-2">Community Gatherings</h3>
+        <p class="text-earth-800 text-sm leading-relaxed">Meaningful spaces for people to connect, share stories, and grow together.</p>
+      </div>
+
+      <div class="group p-6 bg-white/40 backdrop-blur-sm border border-earth-200 rounded-2xl hover:bg-white/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="w-10 h-10 bg-sage/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-sage/20 transition-colors">
+          <i data-lucide="music" class="w-5 h-5 text-sage"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-earth-900 mb-2">Cultural Events</h3>
+        <p class="text-earth-800 text-sm leading-relaxed">Celebrating India's rich heritage through art, music, and performances.</p>
+      </div>
+
+      <div class="group p-6 bg-white/40 backdrop-blur-sm border border-earth-200 rounded-2xl hover:bg-white/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="w-10 h-10 bg-terracotta-light/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-terracotta-light/30 transition-colors">
+          <i data-lucide="palette" class="w-5 h-5 text-terracotta-dark"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-earth-900 mb-2">Creative Workshops</h3>
+        <p class="text-earth-800 text-sm leading-relaxed">Hands-on sessions to learn, create, and explore new passions.</p>
+      </div>
+    </div>
+
+    <div class="reveal active w-full max-w-md mx-auto mb-16">
+      <p class="text-center text-earth-800 text-sm mb-4 font-medium">Be the first to know when we launch</p>
+      <form id="notifyForm" class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-earth-300 pointer-events-none"></i>
+          <input 
+            type="email" 
+            id="emailInput"
+            placeholder="Enter your email address" 
+            required
+            class="w-full pl-10 pr-4 py-3 bg-white/60 backdrop-blur-sm border border-earth-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta/50 text-earth-900 placeholder-earth-300 transition-all"
+          >
+        </div>
+        <button 
+          type="submit" 
+          class="px-6 py-3 bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+        >
+          <span>Notify Me</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+      <p id="successMessage" class="hidden text-center text-sage text-sm mt-3 font-medium">
+        <i data-lucide="check-circle" class="w-4 h-4 inline mr-1"></i>
+        Thank you! We'll be in touch soon.
+      </p>
+    </div>
+
+    <div class="reveal active flex items-center gap-6 mb-8">
+      <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 border border-earth-200 text-earth-800 hover:bg-terracotta hover:text-white hover:border-terracotta transition-all duration-300">
+        <i data-lucide="instagram" class="w-4 h-4"></i>
+      </a>
+      <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 border border-earth-200 text-earth-800 hover:bg-terracotta hover:text-white hover:border-terracotta transition-all duration-300">
+        <i data-lucide="twitter" class="w-4 h-4"></i>
+      </a>
+      <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 border border-earth-200 text-earth-800 hover:bg-terracotta hover:text-white hover:border-terracotta transition-all duration-300">
+        <i data-lucide="facebook" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <footer class="reveal active text-center">
+      <p class="text-earth-300 text-xs tracking-wider">
+         <span id="year"></span> Living Root. Rooted in India.
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // EmailJS Configuration
+    const EMAIL_JS_CONFIG = {
+      service_id: 'service_nlbvynr',
+      notification_template_id: 'template_5sc1le5',  // Template for notifying support team
+      confirmation_template_id: 'template_wb14b2d',  // Template for confirming to user
+      public_key: 'r834N2xUt74Wu_yqZ'
+    };
+
+    // Initialize EmailJS
+    if (EMAIL_JS_CONFIG.public_key !== 'YOUR_PUBLIC_KEY') {
+      emailjs.init(EMAIL_JS_CONFIG.public_key);
+    }
+
+    const form = document.getElementById('notifyForm');
+    const emailInput = document.getElementById('emailInput');
+    const successMessage = document.getElementById('successMessage');
+
+    // Send email notification using EmailJS
+    // Sends 2 emails:
+    // 1. Notification to support@livingroot.space with user's email
+    // 2. Confirmation to user that they've been registered
+    const send_email_notification = async (submitter_email) => {
+      // Email 1: Notify support team about new registration
+      // Using the template's default recipient (should be set to support@livingroot.space in EmailJS dashboard)
+      const notification_params = {
+        user_email: submitter_email,
+        to_name: 'Living Root Team',
+        from_name: submitter_email,
+        reply_to: submitter_email,
+        submission_date: new Date().toLocaleString(),
+        message: `New subscriber: ${submitter_email} signed up to be notified about Living Root launch.`
+      };
+
+      // Email 2: Confirm registration to the user
+      // This requires a second template configured with {{user_email}} as the recipient
+      const confirmation_params = {
+        to_email: submitter_email,
+        user_email: submitter_email,
+        to_name: submitter_email,
+        from_name: 'Living Root',
+        reply_to: 'support@livingroot.space',
+        submission_date: new Date().toLocaleString(),
+        message: `Thank you for signing up! We'll notify you when Living Root launches.`
+      };
+
+      // Send both emails
+      try {
+        const notification_result = await emailjs.send(
+          EMAIL_JS_CONFIG.service_id,
+          EMAIL_JS_CONFIG.notification_template_id,
+          notification_params
+        );
+
+        const confirmation_result = await emailjs.send(
+          EMAIL_JS_CONFIG.service_id,
+          EMAIL_JS_CONFIG.confirmation_template_id,
+          confirmation_params
+        );
+
+        return [notification_result, confirmation_result];
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (emailInput.value && emailInput.value.includes('@')) {
+        const button = form.querySelector('button');
+        const originalContent = button.innerHTML;
+        button.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>';
+        button.disabled = true;
+        lucide.createIcons();
+
+        // Check if EmailJS is configured
+        if (EMAIL_JS_CONFIG.public_key === 'YOUR_PUBLIC_KEY') {
+          // Show warning in console if not configured
+          console.warn('EmailJS is not configured. Please set up your credentials in the EMAIL_JS_CONFIG object.');
+
+          // Still show success message for demo purposes
+          setTimeout(() => {
+            button.innerHTML = originalContent;
+            button.disabled = false;
+            lucide.createIcons();
+            successMessage.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 inline mr-1"></i>Thank you! (EmailJS not configured - check console)';
+            successMessage.classList.remove('hidden');
+            emailInput.value = '';
+            lucide.createIcons();
+
+            setTimeout(() => {
+              successMessage.classList.add('hidden');
+            }, 5000);
+          }, 1000);
+        } else {
+          // Send actual emails via EmailJS (2 emails: notification + confirmation)
+          send_email_notification(emailInput.value)
+            .then((responses) => {
+              console.log('Emails sent successfully!', responses);
+              button.innerHTML = originalContent;
+              button.disabled = false;
+              lucide.createIcons();
+              successMessage.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 inline mr-1"></i>Thank you! Check your email for confirmation.';
+              successMessage.classList.remove('hidden');
+              emailInput.value = '';
+              lucide.createIcons();
+
+              setTimeout(() => {
+                successMessage.classList.add('hidden');
+              }, 5000);
+            })
+            .catch((error) => {
+              console.error('Email sending failed:', error);
+              button.innerHTML = originalContent;
+              button.disabled = false;
+              lucide.createIcons();
+              successMessage.innerHTML = '<i data-lucide="alert-circle" class="w-4 h-4 inline mr-1"></i>Oops! Something went wrong. Please try again.';
+              successMessage.classList.remove('hidden');
+              successMessage.classList.add('text-red-600');
+
+              setTimeout(() => {
+                successMessage.classList.add('hidden');
+                successMessage.classList.remove('text-red-600');
+              }, 5000);
+            });
+        }
+      }
+    });
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
